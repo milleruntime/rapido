@@ -29,8 +29,6 @@ public class MyServlet extends HttpServlet {
     cars.add(c3);
 
     request.setAttribute("cars", cars);
-
     request.getRequestDispatcher("/index.ftl").forward(request, response);
-
   }
 }
