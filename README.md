@@ -3,7 +3,7 @@
 
 ## To create the WAR
 
-mvn compile war:war
+mvn clean package 
 
 ## To Deploy the WAR
 
