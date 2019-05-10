@@ -83,7 +83,7 @@
   RequestDispatcher.forward/include should, and will still work.
   Removing this may open security holes!
 -->
-    <security-constraint>
+    <!--<security-constraint>
         <web-resource-collection>
             <web-resource-name>FreeMarker MVC Views</web-resource-name>
             <url-pattern>*.ftl</url-pattern>
@@ -91,7 +91,7 @@
             <url-pattern>*.ftlx</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <!-- Nobody is allowed to visit these directly. -->
+            &lt;!&ndash; Nobody is allowed to visit these directly. &ndash;&gt;
         </auth-constraint>
-    </security-constraint>
+    </security-constraint>-->
 </web-app>
