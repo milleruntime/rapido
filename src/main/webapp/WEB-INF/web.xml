@@ -38,36 +38,36 @@
               See: https://freemarker.apache.org/docs/pgui_config_incompatible_improvements.html
             -->
         </init-param>
-        <init-param>
+        <!--<init-param>
             <param-name>template_exception_handler</param-name>
-            <!-- Use "html_debug" during development! -->
+            &lt;!&ndash; Use "html_debug" during development! &ndash;&gt;
             <param-value>rethrow</param-value>
         </init-param>
         <init-param>
             <param-name>template_update_delay</param-name>
-            <!-- Use 0 during development! Consider what value you need otherwise. -->
+            &lt;!&ndash; Use 0 during development! Consider what value you need otherwise. &ndash;&gt;
             <param-value>30 s</param-value>
         </init-param>
         <init-param>
             <param-name>default_encoding</param-name>
-            <!-- The encoding of the template files: -->
+            &lt;!&ndash; The encoding of the template files: &ndash;&gt;
             <param-value>UTF-8</param-value>
         </init-param>
         <init-param>
             <param-name>output_encoding</param-name>
-            <!-- The encoding of the template output; Note that you must set
-                 "ResponseCharacterEncodring" to "fromTemplate" for this to work! -->
+            &lt;!&ndash; The encoding of the template output; Note that you must set
+                 "ResponseCharacterEncodring" to "fromTemplate" for this to work! &ndash;&gt;
             <param-value>UTF-8</param-value>
         </init-param>
         <init-param>
             <param-name>locale</param-name>
-            <!-- Influences number and date/time formatting, etc. -->
+            &lt;!&ndash; Influences number and date/time formatting, etc. &ndash;&gt;
             <param-value>en_US</param-value>
         </init-param>
         <init-param>
             <param-name>number_format</param-name>
             <param-value>0.##########</param-value>
-        </init-param>
+        </init-param>-->
 
         <load-on-startup>1</load-on-startup>
     </servlet>

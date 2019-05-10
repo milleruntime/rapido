@@ -1,3 +1,6 @@
+# Rapido
+### A fast lightweight query app for Accumulo
+
 ## To create the WAR
 
 mvn compile war:war
