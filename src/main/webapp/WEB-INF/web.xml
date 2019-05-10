@@ -32,42 +32,12 @@
         <!-- FreeMarker engine settings: -->
         <init-param>
             <param-name>incompatible_improvements</param-name>
-            <param-value>2.3.23</param-value>
+            <param-value>2.3.28</param-value>
             <!--
-              Recommended to set to a high value.
+              This should match the version in the pom
               See: https://freemarker.apache.org/docs/pgui_config_incompatible_improvements.html
             -->
         </init-param>
-        <!--<init-param>
-            <param-name>template_exception_handler</param-name>
-            &lt;!&ndash; Use "html_debug" during development! &ndash;&gt;
-            <param-value>rethrow</param-value>
-        </init-param>
-        <init-param>
-            <param-name>template_update_delay</param-name>
-            &lt;!&ndash; Use 0 during development! Consider what value you need otherwise. &ndash;&gt;
-            <param-value>30 s</param-value>
-        </init-param>
-        <init-param>
-            <param-name>default_encoding</param-name>
-            &lt;!&ndash; The encoding of the template files: &ndash;&gt;
-            <param-value>UTF-8</param-value>
-        </init-param>
-        <init-param>
-            <param-name>output_encoding</param-name>
-            &lt;!&ndash; The encoding of the template output; Note that you must set
-                 "ResponseCharacterEncodring" to "fromTemplate" for this to work! &ndash;&gt;
-            <param-value>UTF-8</param-value>
-        </init-param>
-        <init-param>
-            <param-name>locale</param-name>
-            &lt;!&ndash; Influences number and date/time formatting, etc. &ndash;&gt;
-            <param-value>en_US</param-value>
-        </init-param>
-        <init-param>
-            <param-name>number_format</param-name>
-            <param-value>0.##########</param-value>
-        </init-param>-->
 
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -78,11 +48,7 @@
         <url-pattern>*.ftlh</url-pattern>
         <url-pattern>*.ftlx</url-pattern>
     </servlet-mapping>
-    <!--
-  Prevent the visiting of MVC Views from outside the servlet container.
-  RequestDispatcher.forward/include should, and will still work.
-  Removing this may open security holes!
--->
+
     <!--<security-constraint>
         <web-resource-collection>
             <web-resource-name>FreeMarker MVC Views</web-resource-name>

@@ -1,4 +1,4 @@
-package com.zetcode.bean;
+package beans;
 
 public class Car {
 

@@ -1,6 +1,6 @@
-package com.zetcode.web;
+package servlet;
 
-import com.zetcode.bean.Car;
+import beans.Car;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "MyServlet", urlPatterns = {"/"})
-public class MyServlet extends HttpServlet {
+@WebServlet(name = "GatewayServlet", urlPatterns = {"/"})
+public class GatewayServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
