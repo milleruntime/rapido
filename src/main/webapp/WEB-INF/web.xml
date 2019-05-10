@@ -3,12 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-    <display-name>Accumulo Query App</display-name>
+    <display-name>Rapido</display-name>
 
     <servlet>
         <servlet-name>freemarker</servlet-name>
         <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
-
         <!--
           Init-param documentation:
           https://freemarker.apache.org/docs/api/freemarker/ext/servlet/FreemarkerServlet.html
@@ -48,6 +47,20 @@
         <url-pattern>*.ftlh</url-pattern>
         <url-pattern>*.ftlx</url-pattern>
     </servlet-mapping>
+
+    <!--<servlet>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>rapido.rest</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>-->
 
     <!--<security-constraint>
         <web-resource-collection>
