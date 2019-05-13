@@ -1,5 +1,8 @@
 # Rapido
+
 ### A fast lightweight query app for Accumulo
+### Requirements:
+
 
 ## To create the WAR
 

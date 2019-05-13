@@ -2,7 +2,7 @@ package control;
 
 public enum Destination {
   CARS("/templates/cars.ftl"),
-  HOME("/templates/home.ftl");
+  HOME("/templates/index.ftl");
 
   private String path;
   Destination(String path) {

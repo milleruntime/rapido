@@ -16,7 +16,7 @@
     <th>Here are some links</th>
     <tbody>
     <tr>
-        <td><a href="templates/cars.ftl">Cars</a></td>
+        <td><a href="home?cars=lots">Cars</a></td>
         <td><a href="javascript:fetchData()">Get Data</a></td>
     </tr>
     </tbody>

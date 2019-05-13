@@ -9,14 +9,14 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
-public class ConsoleExample {
+public class ConsoleExampleTest {
 
   public static void main(String[] args) throws IOException,
           TemplateException {
 
     Configuration cfg = new Configuration(Configuration.VERSION_2_3_28);
 
-    cfg.setClassForTemplateLoading(ConsoleExample.class, "/");
+    cfg.setClassForTemplateLoading(ConsoleExampleTest.class, "/");
     cfg.setDefaultEncoding("UTF-8");
 
     Template template = cfg.getTemplate("templates/console.ftl");

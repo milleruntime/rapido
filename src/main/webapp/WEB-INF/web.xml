@@ -43,9 +43,6 @@
     <servlet-mapping>
         <servlet-name>freemarker</servlet-name>
         <url-pattern>*.ftl</url-pattern>
-        <!-- HTML and XML auto-escaped if incompatible_improvements >= 2.3.24: -->
-        <url-pattern>*.ftlh</url-pattern>
-        <url-pattern>*.ftlx</url-pattern>
     </servlet-mapping>
 
     <!--<servlet>
