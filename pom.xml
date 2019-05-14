@@ -14,8 +14,6 @@
     <packaging>war</packaging>
     <description>A web app for querying Apache Accumulo.</description>
     <properties>
-        <hk2.version>2.5.0-b62</hk2.version>
-        <jersey.version>2.27</jersey.version>
         <jetty.version>9.4.17.v20190418</jetty.version>
     </properties>
 
@@ -30,33 +28,6 @@
             <artifactId>javax.servlet-api</artifactId>
             <scope>compile</scope>
             <version>3.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-server</artifactId>
-            <scope>compile</scope>
-            <version>${jetty.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-servlet</artifactId>
-            <scope>compile</scope>
-            <version>${jetty.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <artifactId>jersey-container-servlet</artifactId>
-            <version>${jersey.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-json-jackson</artifactId>
-            <version>${jersey.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>2.1</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
