@@ -2,17 +2,13 @@
 
 ### A fast lightweight query app for Accumulo
 ### Requirements:
+TODO
 
-
-## To create the WAR
+## To create the JAR
 
 mvn clean package 
 
-## To Deploy the WAR
+## To Deploy
 
-cp ./target/rapido-*.war $JETTY_HOME/webapps
-
-## To deploy exploded WAR
-
-cp -r ./target/rapido $JETTY_HOME/webapps
+java -jar target/rapido-*.jar
 
