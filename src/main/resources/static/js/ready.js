@@ -6,11 +6,14 @@ $(document).ready(function() {
         //var userData = $( this ).serializeArray();
         //USER = $( this ).serializeArray();
         var userName = $( "input[type=text][name=userName]" ).val();
-        var query = $( "input[type=text][name=query]" ).val();
+        var pass = $( "input[type=text][name=pass]" ).val();
+        var row = $( "input[type=text][name=row]" ).val();
+        var tableName = "blah"; //TODO get from select
+
         console.log( "The user entered name: " + userName );
-        console.log( "The user entered query: " + query );
+        console.log( "The user entered query row: " + row );
         event.preventDefault();
-        doQuery(userName, query);
+        doQuery(userName, pass, row, tableName);
     });
 
     // hide error span

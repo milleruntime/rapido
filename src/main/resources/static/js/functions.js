@@ -8,10 +8,13 @@ function getQueryResult(){
 /**
  * REST GET call for the query, stores it on a sessionStorage variable
  */
-function doQuery(userName, query) {
+function doQuery(userName, pass, row, tableName) {
     //var tableName = $('#query-select-tables').val();
 
-    var url =  '/greeting?name=' + userName;
+    var url =  '/query?userName=' + userName
+        + '&password=' + pass
+        + '&row=' + row
+        + '&tableName=' + tableName;
     var request = $.ajax({
         type: "GET",
         url: url,
