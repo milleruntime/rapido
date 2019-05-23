@@ -1,4 +1,4 @@
-package spring;
+package bean;
 
 public class Greeting {
 

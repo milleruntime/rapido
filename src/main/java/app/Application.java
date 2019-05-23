@@ -1,4 +1,4 @@
-package spring;
+package app;
 
 import java.util.Arrays;
 
