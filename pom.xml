@@ -11,27 +11,13 @@
     <groupId>milleruntime</groupId>
     <artifactId>rapido</artifactId>
     <version>1.0-SNAPSHOT</version>
-<!--
-    <packaging>war</packaging>
--->
     <description>A web app for querying Apache Accumulo.</description>
     <properties>
-        <freemarker>2.3.28</freemarker>
         <java.version>11</java.version>
+        <junit>5.5.0-M1</junit>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>${freemarker}</version>
-        </dependency>
-        <!--<dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>compile</scope>
-            <version>3.0.1</version>
-        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -48,7 +34,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.5.0-M1</version>
+            <version>${junit}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -58,20 +44,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!--<plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <release>11</release>
-                </configuration>
-            </plugin>-->
-            <!--<plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.2</version>
-                <configuration>
-                    <webappDirectory>target/rapido</webappDirectory>
-                </configuration>
-            </plugin>-->
         </plugins>
     </build>
 

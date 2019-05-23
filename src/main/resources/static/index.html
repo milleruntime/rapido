@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Rapido</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="js/ready.js"></script>
+    <script src="js/functions.js"></script>
+</head>
+<body>
+<form>
+    <p>User name: <input id="userName" name="userName" type="text" /></p>
+    <p>User password: <input id="pass" name="pass" type="password" /></p>
+    <p>Query (row): <input id="query" name="query" type="text" /></p>
+    <p>Table:  <select id="table" name="table"></select></p>
+    <p><input value="Go" type="submit" name="go"/></p>
+</form>
+
+<span id="error"></span>
+
+<p><input id="get-result" type="button" value="Get Query Result" onclick="getQueryResult()"/></p>
+<textarea id="query-output" rows="10" cols="50"></textarea>
+</body>
+</html>
