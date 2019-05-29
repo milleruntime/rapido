@@ -7,14 +7,8 @@ Rapido uses Spring Boot to create a self contained Jar that is deployed with Emb
 ### Requirements:
 Java 11
 
-## To create the Tomcat Embedded JAR
-
-mvn clean package 
-
-## To Deploy
-
-java -jar target/rapido-*.jar
-
-## Or Both in one Command!
+## To build & deploy locally
 
 mvn clean package && java -jar target/rapido-*.jar
+
+## Go to http://localhost:8080/
