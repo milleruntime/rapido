@@ -1,5 +1,6 @@
 package app;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.apache.accumulo.core.client.AccumuloSecurityException;
 import org.apache.accumulo.core.client.BatchScanner;
 import org.apache.accumulo.core.client.TableNotFoundException;
 import org.apache.accumulo.core.data.Key;
+import org.apache.accumulo.core.data.Range;
 import org.apache.accumulo.core.data.Value;
 import org.apache.accumulo.core.security.Authorizations;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,14 +38,16 @@ public class QueryController {
                 .as(userName, password).build()) {
             // use the client
             BatchScanner bs = client.createBatchScanner(tableName, Authorizations.EMPTY);
-            bs.setRanges(Collections.emptyList());
+            ArrayList<Range> ranges = new ArrayList<>();
+            ranges.add(new Range());
+            bs.setRanges(ranges);
             int count = 0;
             for (Map.Entry<Key, Value> entry : bs) {
                 count++;
             }
 
             bs.close();
-            q = new Query(row, tableName, count);
+            q = new Query(tableName, row, count);
         } catch (TableNotFoundException e) {
             e.printStackTrace();
         }

@@ -24,10 +24,11 @@ function doQuery(userName, pass, row, tableName) {
 
     request.done(function( msg ) {
         QUERY = JSON.stringify(msg);
+        $("#error").html("").hide();
     });
 
     request.fail(function( jqXHR, textStatus ) {
-        $("#error").html(jqXHR.responseText).show();
+        $("#error").append("Error: " + jqXHR.responseText + "<br/>").show();
         //alert( "Request failed: " + textStatus );
     });
 
