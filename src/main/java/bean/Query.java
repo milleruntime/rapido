@@ -2,24 +2,14 @@ package bean;
 
 public class Query {
 
-  private final String userName;
-  private final String password;
   private final String row;
   private final String tableName;
+  private final int count;
 
-  public Query(String userName, String password, String row, String tableName) {
-    this.userName = userName;
-    this.password = password;
+  public Query(String tableName, String row, int count) {
     this.row = row;
     this.tableName = tableName;
-  }
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public String getPassword() {
-    return password;
+    this.count = count;
   }
 
   public String getRow() {
@@ -29,4 +19,6 @@ public class Query {
   public String getTableName() {
     return tableName;
   }
+
+  public int getCount() { return count; }
 }
