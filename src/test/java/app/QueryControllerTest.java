@@ -21,6 +21,7 @@ import org.apache.accumulo.core.data.Range;
 import org.apache.accumulo.core.data.Value;
 import org.apache.accumulo.core.security.Authorizations;
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -31,41 +32,53 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.jayway.jsonpath.PathNotFoundException;
 
 import bean.Query;
+import config.RapidoConfig;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class QueryControllerTest {
+    private static final String instance = "uno";
+    private static final String zk = "localhost:2181";
+    private static final String userName = "root";
+    private static final String password = "secret";
 
     @Autowired
     private MockMvc mockMvc;
 
-    private void createTable(AccumuloClient client) throws Exception{
+    private void createTable(AccumuloClient client, String tableName) throws Exception{
         try {
-            client.tableOperations().create("test");
+            client.tableOperations().create(tableName);
         } catch (TableExistsException  e) {}
     }
-    private void deleteTable(AccumuloClient client) throws Exception {
+    private void deleteTable(AccumuloClient client, String tableName) throws Exception {
         try {
-            client.tableOperations().delete("test");
+            client.tableOperations().delete(tableName);
         } catch (TableNotFoundException e) {}
     }
 
+    // Tests that require an active Accumulo running
+
     @Test
-    public void accumuloClientTest() throws Exception{
-        String instance = "uno";
-        String zk = "localhost:2181";
-        String userName = "root";
-        String password = "secret";
+    public void getTablesTest() throws Exception {
+        this.mockMvc.perform(
+                get("/getTables"))
+                .andDo(print()).andExpect(status().isOk());
+                //.andExpect(jsonPath("$.tables").value("accumulo.metadata:!0,accumulo.replication:+rep,accumulo.root:+r,trace:1"));
+    }
+
+
+    /*@Test
+    public void accumuloClientTest() throws Exception {
         String tableName = "test";
         String row = "row1";
 
         Query q = null;
         try (AccumuloClient client = Accumulo.newClient().to(instance, zk)
-                .as(userName, password).build()) {
+                .as(userName, password).zkTimeout(5000).build()) {
 
-            deleteTable(client);
-            createTable(client);
+            deleteTable(client, tableName);
+            createTable(client, tableName);
 
             // use the client
             BatchScanner bs = client.createBatchScanner(tableName, Authorizations.EMPTY);
@@ -80,11 +93,11 @@ public class QueryControllerTest {
             bs.close();
             q = new Query(tableName, row, count);
 
-            deleteTable(client);
+            deleteTable(client, tableName);
         }
         assertNotNull(q);
         assertEquals(0, q.getCount());
-    }
+    }*/
 
     /*@Test
     public void basicTest() throws Exception {

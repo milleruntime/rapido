@@ -8,13 +8,17 @@ $(document).ready(function() {
         var userName = $( "input[type=text][name=userName]" ).val();
         var pass = $( "input[type=text][name=pass]" ).val();
         var row = $( "input[type=text][name=row]" ).val();
-        var tableName = "blah"; //TODO get from select
+        var tableName = getSelectedTable();
 
-        console.log( "The user entered name: " + userName );
-        console.log( "The user entered query row: " + row );
+        console.log( "The user name: " + userName );
+        console.log( "Entered query row: " + row );
+        console.log( "For table: " + tableName );
         event.preventDefault();
         doQuery(userName, pass, row, tableName);
     });
+
+    // load tables into drop down
+    loadTables();
 
     // hide error span
     $('#error').hide();
