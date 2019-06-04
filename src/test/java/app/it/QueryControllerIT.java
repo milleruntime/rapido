@@ -1,12 +1,12 @@
-package app;
+package app.it;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -21,7 +21,6 @@ import org.apache.accumulo.core.data.Range;
 import org.apache.accumulo.core.data.Value;
 import org.apache.accumulo.core.security.Authorizations;
 import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,19 +28,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.jayway.jsonpath.PathNotFoundException;
-
 import bean.Query;
 import config.RapidoConfig;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class QueryControllerTest {
-    private static final String instance = "uno";
-    private static final String zk = "localhost:2181";
-    private static final String userName = "root";
-    private static final String password = "secret";
+/**
+ * Query Controller Integration Test - requires a running Accumulo
+ */
+public class QueryControllerIT {
 
     @Autowired
     private MockMvc mockMvc;
@@ -64,18 +60,19 @@ public class QueryControllerTest {
         this.mockMvc.perform(
                 get("/getTables"))
                 .andDo(print()).andExpect(status().isOk());
-                //.andExpect(jsonPath("$.tables").value("accumulo.metadata:!0,accumulo.replication:+rep,accumulo.root:+r,trace:1"));
+                //.andExpect(jsonPath("$").value("accumulo.metadata:!0,accumulo.replication:+rep,accumulo.root:+r,trace:1"));
     }
 
 
-    /*@Test
+    @Test
     public void accumuloClientTest() throws Exception {
         String tableName = "test";
-        String row = "row1";
+        String rowQuery = "test";
+        RapidoConfig conf = new RapidoConfig();
 
         Query q = null;
-        try (AccumuloClient client = Accumulo.newClient().to(instance, zk)
-                .as(userName, password).zkTimeout(5000).build()) {
+        try (AccumuloClient client = Accumulo.newClient().to(conf.instance(), conf.zk())
+                .as(conf.username(), conf.passowrd()).zkTimeout(5000).build()) {
 
             deleteTable(client, tableName);
             createTable(client, tableName);
@@ -91,13 +88,13 @@ public class QueryControllerTest {
             }
 
             bs.close();
-            q = new Query(tableName, row, count);
+            q = new Query(tableName, rowQuery, count);
 
             deleteTable(client, tableName);
         }
         assertNotNull(q);
         assertEquals(0, q.getCount());
-    }*/
+    }
 
     /*@Test
     public void basicTest() throws Exception {

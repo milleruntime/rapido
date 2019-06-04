@@ -11,4 +11,8 @@ Java 11
 
 mvn clean package && java -jar target/rapido-*.jar
 
-## Go to http://localhost:8080/
+Go to http://localhost:8080/
+
+### To Run an IT (Requires running Accumulo)
+
+mvn clean test -Dtest=app.it.QueryControllerIT
