@@ -17,6 +17,6 @@ public class ConfigTest {
         assertEquals("secret", c.passowrd());
         assertEquals("uno", c.instance());
         assertEquals("localhost:2181", c.zk());
-        assertEquals(5000, c.timeout());
+        assertEquals(10_000, c.timeout());
     }
 }

@@ -20,6 +20,7 @@ function loadTables() {
             $('#tableNameSelect').append(newOption);
         });
         $("#error").html("").hide();
+        $("#loadingTables").hide();
     });
 
     request.fail(function( jqXHR, textStatus ) {
@@ -38,20 +39,47 @@ function getSelectedTable() {
 // some Query functions
 var QUERY = null;
 
-function getQueryResult(){
-    $('#query-output').val(QUERY);
+function getQueryResult() {
+    $('#query-output').val(JSON.stringify(QUERY.results));
+}
+
+function showQueryMsg() {
+    $('#queryMsg').show();
 }
 
 /**
  * REST GET call for the query, stores it on a sessionStorage variable
  */
-function doQuery(userName, pass, row, tableName) {
-    //var tableName = $('#query-select-tables').val();
+function doQuery(startRow, endRow, tableName) {
+    var url =  '/query?&startRow=' + startRow + '&endRow=' + endRow + '&tableName=' + tableName;
+    var request = $.ajax({
+        type: "GET",
+        url: url,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json"
+    });
 
-    var url =  '/query?userName=' + userName
-        + '&password=' + pass
-        + '&row=' + row
-        + '&tableName=' + tableName;
+    request.done(function( msg ) {
+        //QUERY = JSON.stringify(msg);
+        QUERY = msg;
+        $("#error").html("").hide();
+        $('#queryExecuted').html(url);
+        $("#postQuery").show();
+        $('#queryMsg').hide();
+    });
+
+    request.fail(function( jqXHR, textStatus ) {
+        $("#error").append("Error: " + jqXHR.responseText + "<br/>").show();
+    });
+}
+
+/**
+ * REST GET call to count the number of rows in a table
+ */
+function countRows(tableName) {
+    // var row = null;  //TODO get row
+
+    var url =  '/countRows?&tableName=' + tableName;
     var request = $.ajax({
         type: "GET",
         url: url,
@@ -62,6 +90,7 @@ function doQuery(userName, pass, row, tableName) {
     request.done(function( msg ) {
         QUERY = JSON.stringify(msg);
         $("#error").html("").hide();
+        $("#postQuery").show();
     });
 
     request.fail(function( jqXHR, textStatus ) {

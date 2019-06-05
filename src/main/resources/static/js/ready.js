@@ -7,14 +7,15 @@ $(document).ready(function() {
         //USER = $( this ).serializeArray();
         var userName = $( "input[type=text][name=userName]" ).val();
         var pass = $( "input[type=text][name=pass]" ).val();
-        var row = $( "input[type=text][name=row]" ).val();
+        var endRow = $( "input[type=text][name=endRow]" ).val();
+        var startRow = $( "input[type=text][name=startRow]" ).val();
         var tableName = getSelectedTable();
 
-        console.log( "The user name: " + userName );
-        console.log( "Entered query row: " + row );
-        console.log( "For table: " + tableName );
+        //console.log( "The user name: " + userName );
+        console.log( "Entered query row: " + startRow + "-" + endRow);
+        console.log( "For table: " + tableName);
         event.preventDefault();
-        doQuery(userName, pass, row, tableName);
+        doQuery(startRow, endRow, tableName);
     });
 
     // load tables into drop down
@@ -22,4 +23,8 @@ $(document).ready(function() {
 
     // hide error span
     $('#error').hide();
+    // hide post query stuff
+    $('#postQuery').hide();
+    // hide querying msg
+    $('#queryMsg').hide();
 });

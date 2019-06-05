@@ -13,16 +13,24 @@
 <body>
 <h3>Execute Ajax Query</h3>
 <form>
-    <p>User name: <input id="userName" name="userName" type="text" /></p>
-    <p>User password: <input id="pass" name="pass" type="password" /></p>
-    <p>Query (row): <input id="row" name="row" type="text" /></p>
-    <p>Table:  <select id="tableNameSelect" name="tableNameSelect"></select></p>
-    <p><input value="Go" type="submit" name="go"/></p>
+    <!--<p>User name: <input id="userName" name="userName" type="text" /></p>-->
+    <!--<p>User password: <input id="pass" name="pass" type="password" /></p>-->
+    <p>Range Query (rowID): <input id="startRow" name="startRow" type="text" />-<input id="endRow" name="endRow" type="text" /></p>
+    <!--<p>Column Family: <input id="range" name="row" type="text" /></p>-->
+    <p>Table:  <select id="tableNameSelect" name="tableNameSelect"></select>
+        <span id="loadingTables">Loading Tables... </span></p>
+    <p><input value="Go" type="submit" name="go" onclick="showQueryMsg()"/>
+        <span id="queryMsg">Executing Query... </span>
+    </p>
 </form>
 
 <span id="error" style="color: red"></span>
-
-<p><input id="get-result" type="button" value="Get Query Result" onclick="getQueryResult()"/></p>
-<textarea id="query-output" rows="10" cols="50"></textarea>
+<p>
+<div id="postQuery">
+    Query Returned: <span id="queryExecuted"></span><br/>
+    <input id="get-result" type="button" value="Show Results" onclick="getQueryResult()"/><br/>
+    <textarea id="query-output" rows="10" cols="50"></textarea>
+</div>
+</p>
 </body>
 </html>

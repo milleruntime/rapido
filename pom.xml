@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
     <description>A web app for querying Apache Accumulo.</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
         <junit>5.5.0-M1</junit>
     </properties>
 

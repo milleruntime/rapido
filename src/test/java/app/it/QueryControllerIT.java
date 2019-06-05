@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.accumulo.core.client.Accumulo;
@@ -88,7 +89,7 @@ public class QueryControllerIT {
             }
 
             bs.close();
-            q = new Query(tableName, rowQuery, count);
+            q = new Query(new HashMap<>(), tableName, rowQuery, count);
 
             deleteTable(client, tableName);
         }
