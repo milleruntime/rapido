@@ -1,8 +1,10 @@
 package app;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+
 import org.junit.Test;
 
 import config.RapidoConfig;
@@ -10,13 +12,13 @@ import config.RapidoConfig;
 public class ConfigTest {
 
     @Test
-    public void testDefaults() throws IOException {
+    public void testReadProperties() throws IOException {
         RapidoConfig c = new RapidoConfig();
-
-        assertEquals("root", c.username());
-        assertEquals("secret", c.passowrd());
-        assertEquals("uno", c.instance());
-        assertEquals("localhost:2181", c.zk());
-        assertEquals(10_000, c.timeout());
+        assertFalse(c.username().isEmpty());
+        assertFalse(c.passowrd().isEmpty());
+        assertFalse(c.instance().isEmpty());
+        assertFalse(c.zk().isEmpty());
+        assertTrue(c.zk().contains(":"));
+        assertTrue(c.timeout() > 0);
     }
 }

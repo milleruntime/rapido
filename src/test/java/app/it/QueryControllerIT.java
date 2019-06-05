@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -21,6 +22,7 @@ import org.apache.accumulo.core.data.Key;
 import org.apache.accumulo.core.data.Range;
 import org.apache.accumulo.core.data.Value;
 import org.apache.accumulo.core.security.Authorizations;
+import org.apache.hadoop.shaded.javax.ws.rs.core.MediaType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,15 +62,23 @@ public class QueryControllerIT {
     public void getTablesTest() throws Exception {
         this.mockMvc.perform(
                 get("/getTables"))
-                .andDo(print()).andExpect(status().isOk());
+                //.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.tables").exists());
+                //.andExpect(jsonPath("$.tables.accumulo.metadata").value("!0"));
                 //.andExpect(jsonPath("$").value("accumulo.metadata:!0,accumulo.replication:+rep,accumulo.root:+r,trace:1"));
     }
 
 
     @Test
+    /**
+     * Test creating and deleting table with the configured user.
+     * TODO: make this check permissions
+     */
     public void accumuloClientTest() throws Exception {
         String tableName = "test";
-        String rowQuery = "test";
+        //String rowQuery = "test";
         RapidoConfig conf = new RapidoConfig();
 
         Query q = null;
@@ -89,75 +99,11 @@ public class QueryControllerIT {
             }
 
             bs.close();
-            q = new Query(new HashMap<>(), tableName, rowQuery, count);
+            q = new Query(new HashMap<>(), tableName, "", count);
 
             deleteTable(client, tableName);
         }
         assertNotNull(q);
         assertEquals(0, q.getCount());
     }
-
-    /*@Test
-    public void basicTest() throws Exception {
-
-        this.mockMvc.perform(
-                get("/query").param("userName", "root")
-                        .param("password", "secret")
-                        .param("row", "blah")
-                        .param("tableName", "test"))
-                .andDo(print()).andExpect(status().isOk())
-                //.andExpect(jsonPath("$.row").value("blah"))
-                .andExpect(jsonPath("$.tableName").value("test"))
-                .andExpect(jsonPath("$.count").value("0"));
-    }*/
-
-    /*@Test
-    public void testMissingRange() throws Exception {
-
-        try {
-            this.mockMvc.perform(
-                    get("/query").param("userName", "root")
-                            .param("password", "secret")
-                            .param("row", "blah")
-                            .param("tableName", "test"))
-                    .andDo(print()).andExpect(status().isOk())
-                    .andExpect(jsonPath("$.row").value("blah"))
-                    .andExpect(jsonPath("$.tableName").value("test"))
-                    .andExpect(jsonPath("$.count").value("1"));
-        } catch (Exception e) {
-            Throwable t = e.getCause();
-            if (t.getClass().equals(IllegalArgumentException.class)){
-                // s'all Goodman
-                if (t.getMessage().startsWith("ranges"))
-                    System.out.println("Saw IllegalArgument for = " + e.getCause().getMessage());
-                else
-                    throw e;
-            } else {
-                throw e;
-            }
-        }
-    }*/
-
-    /*@Test
-    public void testBadContent() throws Exception {
-
-        try {
-            this.mockMvc.perform(
-                    get("/query").param("userName", "root")
-                            .param("password", "secret")
-                            .param("row", "blah")
-                            .param("tableName", "test"))
-                    .andDo(print()).andExpect(status().isOk())
-                    .andExpect(jsonPath("$.tableName").value("Hello, World!"));
-        } catch (AssertionError e) {
-            Throwable t = e.getCause();
-            if (t.getClass().equals(PathNotFoundException.class)){
-                // s'all Goodman
-            } else {
-                throw e;
-            }
-        }
-    }*/
-
-
 }
