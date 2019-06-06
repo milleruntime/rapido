@@ -50,7 +50,14 @@ function showQueryMsg() {
 /**
  * REST GET call for the query, stores it on a sessionStorage variable
  */
-function doQuery(startRow, endRow, tableName) {
+function doQuery() {
+    var endRow = $( "input[type=text][name=endRow]" ).val();
+    var startRow = $( "input[type=text][name=startRow]" ).val();
+    var tableName = getSelectedTable();
+
+    console.log( "Entered query row: " + startRow + "-" + endRow);
+    console.log( "For table: " + tableName);
+
     var url =  '/query?&startRow=' + startRow + '&endRow=' + endRow + '&tableName=' + tableName;
     var request = $.ajax({
         type: "GET",

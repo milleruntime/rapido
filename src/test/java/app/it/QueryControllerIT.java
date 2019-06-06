@@ -70,6 +70,21 @@ public class QueryControllerIT {
                 //.andExpect(jsonPath("$").value("accumulo.metadata:!0,accumulo.replication:+rep,accumulo.root:+r,trace:1"));
     }
 
+    @Test
+    public void simpleQuery() throws Exception {
+        this.mockMvc.perform(
+                get("/query")
+                        .param("startRow", "1")
+                        .param("endRow", "9")
+                        .param("tableName", "accumulo.metadata")).andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.count").exists())
+                .andExpect(jsonPath("$.startRow").value("1"));
+        //.andExpect(jsonPath("$.tables.accumulo.metadata").value("!0"));
+        //.andExpect(jsonPath("$").value("accumulo.metadata:!0,accumulo.replication:+rep,accumulo.root:+r,trace:1"));
+    }
+
 
     @Test
     /**

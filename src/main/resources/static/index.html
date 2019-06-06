@@ -14,7 +14,8 @@
 <h3>Execute Ajax Query</h3>
 <form>
     <p>Range Query (rowID): <input id="startRow" name="startRow" type="text" />-<input id="endRow" name="endRow" type="text" /></p>
-    <!--<p>Column Family: <input id="range" name="row" type="text" /></p>-->
+    <p>    Column Family: <input id="cf" name="cf" type="text" /></p>
+    <p>    Column Qualifier: <input id="cq" name="cq" type="text" /></p>
     <p>Table:  <select id="tableNameSelect" name="tableNameSelect"></select>
         <span id="loadingTables">Loading Tables... </span></p>
     <p><input value="Go" type="submit" name="go" onclick="showQueryMsg()"/>
