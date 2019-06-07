@@ -7,8 +7,7 @@ $(document).ready(function() {
         doQuery();
     });
 
-    // load tables into drop down
-    loadTables();
+    testConnection();
 
     // hide error span
     $('#error').hide();

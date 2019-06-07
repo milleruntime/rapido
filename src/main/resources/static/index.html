@@ -11,6 +11,9 @@
     <script src="js/functions.js"></script>
 </head>
 <body>
+<span id="connectionWarning"><h3>ERROR: Connection to Accumulo required</h3></span>
+
+<div id="main">
 <h3>Execute Ajax Query</h3>
 <form>
     <p>Range Query (rowID): <input id="startRow" name="startRow" type="text" />-<input id="endRow" name="endRow" type="text" /></p>
@@ -31,5 +34,6 @@
     <textarea id="query-output" rows="10" cols="50"></textarea>
 </div>
 </p>
+</div>
 </body>
 </html>

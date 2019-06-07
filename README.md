@@ -19,6 +19,10 @@ To Deploy locally:
 ```bash
 java -jar target/rapido-*.jar
 ```
+To do both in one command:
+```bash
+mvn clean package && java -jar target/rapido-*.jar
+```
 
 Go to http://localhost:8080/
 

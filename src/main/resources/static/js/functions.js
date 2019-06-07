@@ -1,6 +1,5 @@
 // load the tables into the select dropdown
 var TABLES = null;
-
 function loadTables() {
     // rest call to get table list
     var url =  '/getTables';
@@ -25,6 +24,27 @@ function loadTables() {
 
     request.fail(function( jqXHR, textStatus ) {
         $("#error").append("Error: " + jqXHR.responseText + "<br/>").show();
+    });
+}
+
+// test connection
+function testConnection() {
+    var request = $.ajax({
+        type: "GET",
+        url: "/test"
+    });
+    request.done(function( msg ) {
+        // load tables into drop down
+        if (msg) {
+            $('#connectionWarning').hide();
+            $('#main').show();
+            loadTables();
+        } else {
+            $('#main').hide();
+        }
+    });
+    request.fail(function( jqXHR, textStatus ) {
+        $('#connectionWarning').show();
     });
 }
 
