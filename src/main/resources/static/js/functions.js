@@ -1,5 +1,4 @@
 // load the tables into the select dropdown
-var TABLES = null;
 function loadTables() {
     // rest call to get table list
     var url =  '/getTables';
@@ -57,8 +56,6 @@ function getSelectedTable() {
 
 
 // some Query functions
-var QUERY = null;
-
 function getQueryResult() {
     $('#query-output').val(JSON.stringify(QUERY.results));
 }
@@ -73,12 +70,13 @@ function showQueryMsg() {
 function doQuery() {
     var endRow = $( "input[type=text][name=endRow]" ).val();
     var startRow = $( "input[type=text][name=startRow]" ).val();
+    var term = $( "input[type=text][name=term]" ).val();
     var tableName = getSelectedTable();
 
     console.log( "Entered query row: " + startRow + "-" + endRow);
     console.log( "For table: " + tableName);
 
-    var url =  '/query?&startRow=' + startRow + '&endRow=' + endRow + '&tableName=' + tableName;
+    var url =  '/query?&startRow=' + startRow + '&endRow=' + endRow + '&tableName=' + tableName + "&term=" + term;
     var request = $.ajax({
         type: "GET",
         url: url,

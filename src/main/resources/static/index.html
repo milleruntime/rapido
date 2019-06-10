@@ -16,9 +16,9 @@
 <div id="main">
 <h3>Execute Ajax Query</h3>
 <form>
-    <p>Range Query (rowID): <input id="startRow" name="startRow" type="text" />-<input id="endRow" name="endRow" type="text" /></p>
-    <p>    Column Family: <input id="cf" name="cf" type="text" /></p>
-    <p>    Column Qualifier: <input id="cq" name="cq" type="text" /></p>
+    <p>Enter a term: <input id="term" name="term" type="text" /></p>
+    <p>Range Query (rowID): <input id="startRow" name="startRow" type="text" value="1"/>-
+        <input id="endRow" name="endRow" type="text" value="9"/></p>
     <p>Table:  <select id="tableNameSelect" name="tableNameSelect"></select>
         <span id="loadingTables">Loading Tables... </span></p>
     <p><input value="Go" type="submit" name="go" onclick="showQueryMsg()"/>
@@ -35,5 +35,7 @@
 </div>
 </p>
 </div>
+<hr>
+<a href='https://github.com/milleruntime'>Support</a>
 </body>
 </html>

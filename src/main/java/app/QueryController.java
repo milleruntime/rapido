@@ -44,12 +44,13 @@ public class QueryController {
     @RequestMapping("/query")
     public Query query(@RequestParam(value = "startRow") String startRow,
                        @RequestParam(value = "endRow") String endRow,
+                       @RequestParam(value = "term") String term,
                        @RequestParam(value = "tableName") String tableName) {
         RapidoConfig config = Rapido.getConfig();
 
         Query q = null;
         Map<Key, Value> results = new HashMap<>();
-        Text searchRowID = new Text(startRow);
+        Text userTerm = new Text(term);
         Range userRange = new Range(new Text(startRow), new Text(endRow));
         log.info("Connecting to Accumulo...");
         try (AccumuloClient client = Accumulo.newClient().to(config.instance(), config.zk())
@@ -60,18 +61,22 @@ public class QueryController {
             ranges.add(userRange);
             bs.setRanges(ranges);
 
-            log.info("Executing row query '{}-{}' for {} on {}", startRow, endRow, config.username(), config.instance());
+            log.info("Executing query {} '{}-{}' for {} on {}", term, startRow, endRow, config.username(), config.instance());
             int count = 0;
             for (Map.Entry<Key, Value> entry : bs) {
-                //Text rowID = entry.getKey().getRow();
-                //log.info("Checking against RowID = " + rowID);
-                //if (searchRowID.equals(rowID)) {
-                    results.put(entry.getKey(), entry.getValue());
+                Key key = entry.getKey();
+                Value val = entry.getValue();
+                Text cf = key.getColumnFamily();
+                Text cq = key.getColumnQualifier();
+                String columns = cf.toString() + " " + cq.toString();
+                log.info("Checking column string = " + columns);
+                if (columns.contains(userTerm.toString())) {
+                    results.put(key, val);
                     count++;
-                //}
+                }
             }
             bs.close();
-            log.info("Row query '{}-{}' for {} on {} found {}", startRow, endRow, config.username(), config.instance(), count);
+            log.info("Query '{}-{}' for {} on {} found {}", startRow, endRow, config.username(), config.instance(), count);
 
             q = new Query(results, tableName, startRow, count);
         } catch (TableNotFoundException e) {
